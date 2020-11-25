@@ -31,6 +31,18 @@
                 <action android:name="com.deepak.broadcastreceiverexample.EXPORT_SAMPLE"/>
             </intent-filter>
         </receiver>
+
+
+        <receiver android:name=".recievers.OrderedBroadcastReceiver2">
+            <intent-filter android:priority="2">
+                <action android:name="com.deepak.broadcastreceiverexample.ORDERED_SAMPLE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".recievers.OrderedBroadcastReceiver3">
+            <intent-filter android:priority="3">
+                <action android:name="com.deepak.broadcastreceiverexample.ORDERED_SAMPLE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

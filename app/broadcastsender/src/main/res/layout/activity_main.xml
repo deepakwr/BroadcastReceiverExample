@@ -54,6 +54,14 @@
             android:onClick="sendBTWithExtra"
             android:text="SEND BT EXPORTED EXTRA" />
 
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="sendBTOrdered"
+            android:text="SEND BT ORDERED" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

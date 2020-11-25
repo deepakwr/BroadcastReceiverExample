@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import com.deepak.broadcastreceiverexample.recievers.ExampleBroadcastReceiver;
+import com.deepak.broadcastreceiverexample.recievers.OrderedBroadcastReceiver1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
      */
     ExampleBroadcastReceiver exampleBroadcastReceiver = new ExampleBroadcastReceiver();
 
+    OrderedBroadcastReceiver1 orderedBroadcastReceiver1 = new OrderedBroadcastReceiver1();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         filter.addAction(getPackageName() + ".EXAMPLE_ACTION");
         registerReceiver(exampleBroadcastReceiver,filter);
+
+
+
+        IntentFilter orderedIntentFilter = new IntentFilter("com.deepak.broadcastreceiverexample.ORDERED_SAMPLE");
+        //Higher number gets first priority :   IntentFilter.SYSTEM_HIGH_PRIORITY(1000) to IntentFilter.SYSTEM_LOW_PRIORITY(-1000)
+        orderedIntentFilter.setPriority(1);
+        registerReceiver(orderedBroadcastReceiver1,orderedIntentFilter);
     }
 
     @Override
@@ -47,5 +57,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(exampleBroadcastReceiver);
+        unregisterReceiver(orderedBroadcastReceiver1);
     }
 }

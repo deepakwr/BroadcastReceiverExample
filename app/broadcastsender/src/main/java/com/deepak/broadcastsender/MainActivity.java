@@ -94,4 +94,10 @@ public class MainActivity extends AppCompatActivity {
             sendBroadcast(intent);
         }
     }
+
+    public void sendBTOrdered(View view){
+        Intent intent = new Intent("com.deepak.broadcastreceiverexample.ORDERED_SAMPLE");
+        intent.setPackage("com.deepak.broadcastreceiverexample");
+        sendOrderedBroadcast(intent,null);
+    }
 }
