@@ -20,22 +20,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        filter.addAction(getPackageName() + ".EXAMPLE_ACTION");
+        registerReceiver(exampleBroadcastReceiver,filter);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        /*
-        This can be called at resume/pause level in aactivity scope or Application scope.
-        Ideally it depends on use case if you want receiver to capture even if on background and active state.
-        */
-        registerReceiver(exampleBroadcastReceiver,filter);
+//        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+//        /*
+//        This can be called at resume/pause/onstart level in aactivity scope or Application scope.
+//        Ideally it depends on use case if you want receiver to capture even if on background and active state.
+//        */
+//        registerReceiver(exampleBroadcastReceiver,filter);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+//        unregisterReceiver(exampleBroadcastReceiver);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         unregisterReceiver(exampleBroadcastReceiver);
     }
 }

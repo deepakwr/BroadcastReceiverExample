@@ -1,2 +1,3 @@
+include ':app:broadcastsender'
 include ':app'
 rootProject.name = "BroadcastReceiverExample"

@@ -30,6 +30,12 @@ public class ExampleBroadcastReceiver extends BroadcastReceiver {
             }
         }
 
+        String EXAMPLE_ACTION_NAME = context.getPackageName() + ".EXAMPLE_ACTION";
+        if(EXAMPLE_ACTION_NAME.equals(intent.getAction())){
+            String receivedText = intent.getStringExtra(context.getPackageName() + ".EXTRA_TEXT");
+            Toast.makeText(context,"Example of custom receiver: " + receivedText,Toast.LENGTH_LONG).show();
+        }
+
     }
 
 }
