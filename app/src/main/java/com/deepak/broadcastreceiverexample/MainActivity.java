@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter orderedIntentFilter = new IntentFilter("com.deepak.broadcastreceiverexample.ORDERED_SAMPLE");
         //Higher number gets first priority :   IntentFilter.SYSTEM_HIGH_PRIORITY(1000) to IntentFilter.SYSTEM_LOW_PRIORITY(-1000)
         orderedIntentFilter.setPriority(1);
-        registerReceiver(orderedBroadcastReceiver1,orderedIntentFilter);
+
+        registerReceiver(orderedBroadcastReceiver1,orderedIntentFilter,android.Manifest.permission.VIBRATE,null);
     }
 
     @Override

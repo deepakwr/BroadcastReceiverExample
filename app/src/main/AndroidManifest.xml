@@ -3,6 +3,9 @@
     package="com.deepak.broadcastreceiverexample">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <permission android:name="com.deepak.broadcastreceiverexample.CUSTOM_PERMISSION"/>
+<!--        android:protectionLevel="signature"/>-->
 
     <application
         android:allowBackup="true"
@@ -33,13 +36,16 @@
         </receiver>
 
 
-        <receiver android:name=".recievers.OrderedBroadcastReceiver2">
+        <receiver android:name=".recievers.OrderedBroadcastReceiver2"
+            android:permission="android.permission.INTERNET">
             <intent-filter android:priority="2">
                 <action android:name="com.deepak.broadcastreceiverexample.ORDERED_SAMPLE"/>
             </intent-filter>
         </receiver>
-        <receiver android:name=".recievers.OrderedBroadcastReceiver3">
-            <intent-filter android:priority="3">
+        <receiver android:name=".recievers.OrderedBroadcastReceiver3"
+            android:permission="com.deepak.broadcastreceiverexample.CUSTOM_PERMISSION">
+            <intent-filter android:priority="3"
+                >
                 <action android:name="com.deepak.broadcastreceiverexample.ORDERED_SAMPLE"/>
             </intent-filter>
         </receiver>

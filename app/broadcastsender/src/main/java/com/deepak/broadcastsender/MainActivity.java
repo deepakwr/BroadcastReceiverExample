@@ -2,6 +2,7 @@ package com.deepak.broadcastsender;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -111,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
         String INITIAL_DATA ="Start";
         Bundle intialExtras = new Bundle();
         intialExtras.putString("stringFromSenderReceiver","Start");
-        sendOrderedBroadcast(intent,null, new SenderReceiver(),null,INITIAL_RESULT_CODE,INITIAL_DATA,intialExtras);
+//        sendOrderedBroadcast(intent,null, new SenderReceiver(),null,INITIAL_RESULT_CODE,INITIAL_DATA,intialExtras);
+
+        //Example of sending broadcast based on permission required on the receivers.
+        sendOrderedBroadcast(intent, Manifest.permission.WAKE_LOCK, new SenderReceiver(),null,INITIAL_RESULT_CODE,INITIAL_DATA,intialExtras);
     }
 }
