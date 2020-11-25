@@ -24,6 +24,13 @@
 <!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>-->
 <!--            </intent-filter>-->
 <!--        </receiver>-->
+
+        <receiver android:name=".recievers.ExportedBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.deepak.broadcastreceiverexample.EXPORT_SAMPLE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
