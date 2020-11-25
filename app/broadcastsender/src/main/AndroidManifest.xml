@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <receiver android:name=".DifferentBroadcastReceiver"/>
+        <receiver android:name=".SenderReceiver"/>
     </application>
 
 </manifest>

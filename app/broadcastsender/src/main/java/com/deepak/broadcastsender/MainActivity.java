@@ -2,6 +2,7 @@ package com.deepak.broadcastsender;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -99,5 +100,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent("com.deepak.broadcastreceiverexample.ORDERED_SAMPLE");
         intent.setPackage("com.deepak.broadcastreceiverexample");
         sendOrderedBroadcast(intent,null);
+
+
+    }
+
+    public void senderReceiver(View view){
+        Intent intent = new Intent("com.deepak.broadcastreceiverexample.ORDERED_SAMPLE");
+        intent.setPackage("com.deepak.broadcastreceiverexample");   //Very important
+        int INITIAL_RESULT_CODE = 0;
+        String INITIAL_DATA ="Start";
+        Bundle intialExtras = new Bundle();
+        intialExtras.putString("stringFromSenderReceiver","Start");
+        sendOrderedBroadcast(intent,null, new SenderReceiver(),null,INITIAL_RESULT_CODE,INITIAL_DATA,intialExtras);
     }
 }
