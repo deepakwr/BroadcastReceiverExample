@@ -12,6 +12,7 @@ public class ExampleBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        // Static receiver
         //permission in manifest - android.permission.RECEIVE_BOOT_COMPLETED
         if(Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())){
             Toast.makeText(context,"Boot completed",Toast.LENGTH_LONG).show();
@@ -19,7 +20,14 @@ public class ExampleBroadcastReceiver extends BroadcastReceiver {
 
         //permission in manifest android.net.conn.CONNECTIVITY_CHANGE  -   Only works on device API lower than 26
         if(ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())){
-            Toast.makeText(context,"Connectivity Changed : " + intent.getExtras().toString(),Toast.LENGTH_LONG);
+
+            boolean noConnetivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY,false);
+            if(noConnetivity){
+                Toast.makeText(context,"No connectivity",Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(context,"Connected",Toast.LENGTH_LONG).show();
+
+            }
         }
 
     }
