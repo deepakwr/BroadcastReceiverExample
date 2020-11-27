@@ -8,6 +8,7 @@
 <!--        android:protectionLevel="signature"/>-->
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -49,6 +50,8 @@
                 <action android:name="com.deepak.broadcastreceiverexample.ORDERED_SAMPLE"/>
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".recievers.AlertReceiver"/>
     </application>
 
 </manifest>

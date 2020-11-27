@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -35,6 +37,25 @@ public class OrderedBroadcastReceiver2 extends BroadcastReceiver {
         }
         else {
             Toast.makeText(context, "OrderedBroadcastReceiver 2 triggered : " + intent.getAction(), Toast.LENGTH_LONG).show();
+
+            final Handler handler = new Handler();
+
+            PendingResult pendingResult = goAsync();
+
+            new Thread(() -> {
+                SystemClock.sleep(10000);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(context, "OBR 2 triggered via gosync thread: " + intent.getAction(), Toast.LENGTH_LONG).show();
+                        Log.d("BroadcastReceiver","OBR 2 triggered via gosync thread:"+intent.getAction());
+                    }
+                });
+            }).start();
+            //heavy work on a background thread
+            pendingResult.finish();
+
+
         }
         Log.d("BroadcastReceiver","OBR 2 triggered:"+intent.getAction());
     }
